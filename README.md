@@ -6,6 +6,6 @@ MVC PHP framework
   <li>git clone https://github.com/failedCoder/MVC-framework.git</li>
   <li>composer install</li>
   <li>npm install</li>
-  <li>Create (mySql)database</li>
+  <li>Create the (mySql)database</li>
   <li>Enter the database parametars to <strong>config.php</strong></li>
 </ul>
