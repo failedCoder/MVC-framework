@@ -20,6 +20,7 @@ class DB
 
 	}
 
+
 	public static function selectAll ($table, $class = '', $field = 'id', $order = 'asc', $limit = '') 
 
 	{
@@ -38,6 +39,41 @@ class DB
 		}
 
 		return $statement->fetchAll(\PDO::FETCH_CLASS);
+	
+	}
+
+
+	public static function insert($table, $data = []) 
+
+	{
+		
+		try {
+
+			$columnsArray = array_keys($data);
+			$columnsString = implode(',', $columnsArray);
+
+			$valuesArray = array_values($data);
+			$valuesCount = count($valuesArray);
+
+			$valuesPlaceholder = '';
+			for ($i=0; $i < $valuesCount; $i++) { 
+				$valuesPlaceholder .= '?,';
+			}
+			$valuesPlaceholder = rtrim($valuesPlaceholder, ',');
+
+
+			$query = "INSERT INTO $table ($columnsString) VALUES ($valuesPlaceholder)";
+
+			$statement = static::$connection->prepare($query);
+
+			$statement->execute($valuesArray);
+
+		} catch (\PDOException $e) {
+			
+			die("Insert failed: " . $e->getMessage());
+			
+		}
+		
 	
 	}
 
