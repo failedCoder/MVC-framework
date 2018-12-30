@@ -1,0 +1,36 @@
+<?php
+
+namespace App\Database;
+
+/**
+ * Creates singleton object of mySql database connection
+ * Config file is in config.php (root)
+ */
+class Connection {
+
+	private static $instance;
+
+	public static function make($config){
+
+		try {
+
+			if(self::$instance === NULL) {
+		
+					self::$instance = 
+						new \PDO ("mysql:host=" . $config['host'] . ";
+						dbname=" . $config['name'],$config['username'],$config['password'],$config['options']
+					);
+		
+			}
+		
+			return self::$instance;
+
+		} catch (\PDOException $e) {
+
+			die("Database connection error: " . $e->getMessage());
+
+		}
+
+	}
+
+}
