@@ -8,11 +8,11 @@ return [
 
 		'host' => 'localhost',
 
-		'name' => 'lottery',
+		'name' => '',
 
 		'username' => 'root',
 
-		'password' => 'Sejxohem24',
+		'password' => '',
 
 		'options' => [
 
